@@ -1,0 +1,67 @@
+version: "3.5"
+
+services:
+
+  zookeeper:
+    build: .
+    image: kafka-ubuntu:latest
+    container_name: zookeeper
+    command: ./run_start_zookeeper.sh
+    ports:
+    - 2181:2180
+    environment:
+      ZOOKEEPER_HOST: "zookeeper"
+
+  kafka1:
+    image: kafka-ubuntu:latest
+    container_name: kafka1
+    command: ./run_start_server.sh
+    #restart: unless-stopped
+    depends_on:
+      - zookeeper
+    ports:
+      - "29092:29092"
+    environment:
+      ZOOKEEPER_HOST: "zookeeper"
+      ZOOKEEPER_PORT: "2181"
+      BROKER_ID: 1
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "9092" ]
+      start_period: 30s
+
+  kafka2:
+    image: kafka-ubuntu:latest
+    container_name: kafka2
+    command: ./run_start_server.sh
+    #restart: unless-stopped
+    depends_on:
+      - zookeeper
+    ports:
+      - "29093:29092"
+    environment:
+      ZOOKEEPER_HOST: "zookeeper"
+      ZOOKEEPER_PORT: "2181"
+      BROKER_ID: 2
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "9092" ]
+      start_period: 30s
+
+  kafka3:
+    image: kafka-ubuntu:latest
+    container_name: kafka3
+    command: ./run_start_server.sh
+    #restart: unless-stopped
+    depends_on:
+      - zookeeper
+    ports:
+      - "29094:29092"
+    environment:
+      ZOOKEEPER_HOST: "zookeeper"
+      ZOOKEEPER_PORT: "2181"
+      BROKER_ID: 3
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "9092" ]
+      start_period: 30s
+
+
+
