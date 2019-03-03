@@ -25,9 +25,6 @@ services:
       ZOOKEEPER_HOST: "zookeeper"
       ZOOKEEPER_PORT: "2181"
       BROKER_ID: 1
-    healthcheck:
-      test: [ "CMD", "nc", "-z", "localhost", "9092" ]
-      start_period: 30s
 
   kafka2:
     image: kafka-ubuntu:latest
@@ -42,9 +39,6 @@ services:
       ZOOKEEPER_HOST: "zookeeper"
       ZOOKEEPER_PORT: "2181"
       BROKER_ID: 2
-    healthcheck:
-      test: [ "CMD", "nc", "-z", "localhost", "9092" ]
-      start_period: 30s
 
   kafka3:
     image: kafka-ubuntu:latest
@@ -59,9 +53,3 @@ services:
       ZOOKEEPER_HOST: "zookeeper"
       ZOOKEEPER_PORT: "2181"
       BROKER_ID: 3
-    healthcheck:
-      test: [ "CMD", "nc", "-z", "localhost", "9092" ]
-      start_period: 30s
-
-
-
