@@ -1,4 +1,4 @@
-# High availability with Kafka cluster in Docker
+# High availability with Kafka cluster using Docker containers
 
 ## Steps
 ### 1. Clone the project and cd into the folder
@@ -56,3 +56,10 @@ Taking `Partition: 0` as example, we have two more information:
 
 ### 5. Disturbing the cluster
 Coming soon.
+
+### 6. Clean up
+Go to the root folder where is'docker-compose.yml'.
+To stop all containers execute:
+```
+$ docker-compose down
+```
