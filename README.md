@@ -20,12 +20,12 @@ $ docker-compose logs -f
 ```
 $ docker-compose ps
 ```
-P.S: Docker-Compose will create a default Docker network. In my example it's "kafka-cluster_default". Check whether your is the same by running `docker network ls`.
+P.S: Docker-Compose will create a default Docker network. In my example it's "kafka-cluster-docker-compose_default". Check whether your is the same by running `docker network ls`.
 
 ### 3. Add a Kafka topic
 Let's add a topic which will have replicas at all the 3 Kafka Brokers (Servers) and with 3 partitions.
 ```
-$ docker run -t --rm --net kafka-cluster_default \
+$ docker run -t --rm --net kafka-cluster-docker-compose_default \
   kafka-ubuntu:latest \
   bin/kafka-topics.sh --create --zookeeper zookeeper:2181 \
   --replication-factor 3 --partitions 3 --topic MyTopic
@@ -37,7 +37,7 @@ Created topic "MyTopic".
 ### 4. Check the distributed partitions
 By running the command below, we can see how the partitions are distributed among the Kafka Brokers and who is the leader of each one:
 ```
-$ docker run -t --rm --net kafka-cluster_default \
+$ docker run -t --rm --net kafka-cluster-docker-compose_default \
   kafka-ubuntu:latest \
   bin/kafka-topics.sh --describe --topic MyTopic --zookeeper zookeeper:2181
 ```
