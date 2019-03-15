@@ -3,8 +3,7 @@ FROM ubuntu:16.04
 RUN apt-get update
 RUN apt-get install -y \
     default-jdk \
-    wget \
-    curl && \
+    wget && \
     rm -rf /var/lib/apt/lists/*
 
 ENV KAFKA_PATH=/usr/local/kafka
