@@ -5,7 +5,7 @@
 ```
 $ git clone https://github.com/wagnerjfr/kafka-cluster.git
 
-$ cd kafka-cluster
+$ cd kafka-cluster-docker-compose
 ```
 ### 2. Create the containers
 We are using Docker-Compose to start the containers. Go to the root folder where 'docker-compose.yml' is located and run the below command:
