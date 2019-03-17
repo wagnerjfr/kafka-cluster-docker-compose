@@ -3,7 +3,7 @@
 ## Steps
 ### 1. Clone the project and cd into the folder
 ```
-$ git clone https://github.com/wagnerjfr/kafka-cluster.git
+$ git clone https://github.com/wagnerjfr/kafka-cluster-docker-compose.git
 
 $ cd kafka-cluster-docker-compose
 ```
