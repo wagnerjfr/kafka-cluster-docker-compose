@@ -55,8 +55,42 @@ Taking `Partition: 0` as example, we have two more information:
 2. `Isr: 1,2,3`: (Isr: in-sync replica) This shows that kafka1, kafka2 and kafka3 are synchronized with the partition's leader.
 
 ### 5. Disturbing the cluster
-Coming soon.
+Let's stop kafka2:
+```
+$ docker stop kafka2
+```
+Run the command from section 4 again. 
 
+Kafka1 was elected to be the new leader of `Partition: 1` which had the stopped kafka2 was the leader before.
+```console
+Topic:MyTopic	PartitionCount:3	ReplicationFactor:3	Configs:
+	Topic: MyTopic	Partition: 0	Leader: 3	Replicas: 3,2,1	Isr: 3,2,1
+	Topic: MyTopic	Partition: 1	Leader: 1	Replicas: 1,3,2	Isr: 1,3,2
+	Topic: MyTopic	Partition: 2	Leader: 1	Replicas: 2,1,3	Isr: 1,3
+```
+Stopping kafka3:
+```
+$ docker stop kafka3
+```
+Now, kafka1 is the leader of the 3 partitions:
+```console
+Topic:MyTopic	PartitionCount:3	ReplicationFactor:3	Configs:
+	Topic: MyTopic	Partition: 0	Leader: 1	Replicas: 3,2,1	Isr: 1
+	Topic: MyTopic	Partition: 1	Leader: 1	Replicas: 1,3,2	Isr: 1,3,2
+	Topic: MyTopic	Partition: 2	Leader: 1	Replicas: 2,1,3	Isr: 1,3
+
+```
+Staring kafka2 and kafka3:
+```
+$ docker start kafka2 kafka3
+```
+Kafka1 continues to be the leader of all partitions and replicas are synchronized again:
+```console
+Topic:MyTopic	PartitionCount:3	ReplicationFactor:3	Configs:
+	Topic: MyTopic	Partition: 0	Leader: 1	Replicas: 3,2,1	Isr: 1,2,3
+	Topic: MyTopic	Partition: 1	Leader: 1	Replicas: 1,3,2	Isr: 1,3,2
+	Topic: MyTopic	Partition: 2	Leader: 1	Replicas: 2,1,3	Isr: 1,3,2
+```
 ### 6. Clean up
 Go to the root folder where is'docker-compose.yml'.
 To stop all containers execute:
