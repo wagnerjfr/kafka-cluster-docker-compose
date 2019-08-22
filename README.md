@@ -92,7 +92,8 @@ Topic:MyTopic	PartitionCount:3	ReplicationFactor:3	Configs:
 	Topic: MyTopic	Partition: 2	Leader: 1	Replicas: 2,1,3	Isr: 1,3,2
 ```
 ### 6. Clean up
-Go to the root folder where is'docker-compose.yml'.
+Go to the root folder where ***docker-compose.yml*** is located.
+
 To stop all containers execute:
 ```
 $ docker-compose down
