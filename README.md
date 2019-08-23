@@ -8,19 +8,19 @@ $ git clone https://github.com/wagnerjfr/kafka-cluster-docker-compose.git
 $ cd kafka-cluster-docker-compose
 ```
 ### 2. Create the containers
-We are using Docker-Compose to start the containers. Go to the root folder where 'docker-compose.yml' is located and run the below command:
+We are using [Docker-Compose](https://docs.docker.com/compose/) to start the containers. Go to the root folder where ***docker-compose.yml*** is located and run the below command:
 ```
 $ docker-compose up -d
 ```
-[Optional] You can either open a separate terminal and follow the logs while systems are initializing:
+*[Optional] You can either open a separate terminal and follow the logs while systems are initializing:*
 ```
 $ docker-compose logs -f
 ```
-[Optional] Or check the starting status:
+*[Optional] Or check the starting status:*
 ```
 $ docker-compose ps
 ```
-P.S: Docker-Compose will create a default Docker network. In my example it's "kafka-cluster-docker-compose_default". Check whether your is the same by running `docker network ls`.
+***P.S:*** Docker-Compose will create a default Docker network. In my example the name is ***kafka-cluster-docker-compose_default***. Check whether your is the same by running `docker network ls`.
 
 ### 3. Add a Kafka topic
 Let's add a topic which will have replicas at all the 3 Kafka Brokers (Servers) and with 3 partitions.
