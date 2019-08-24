@@ -80,7 +80,7 @@ Topic:MyTopic	PartitionCount:3	ReplicationFactor:3	Configs:
 	Topic: MyTopic	Partition: 2	Leader: 1	Replicas: 2,1,3	Isr: 1,3
 
 ```
-Staring kafka2 and kafka3:
+Starting kafka2 and kafka3:
 ```
 $ docker start kafka2 kafka3
 ```
