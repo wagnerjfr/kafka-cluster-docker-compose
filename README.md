@@ -48,7 +48,7 @@ Topic:MyTopic	PartitionCount:3	ReplicationFactor:3	Configs:
 	Topic: MyTopic	Partition: 1	Leader: 2	Replicas: 2,3,1	Isr: 2,3,1
 	Topic: MyTopic	Partition: 2	Leader: 3	Replicas: 3,1,2	Isr: 3,1,2
 ```
-From the output, we see that `Partition: 0` has kafka1 as its leader. `Partition: 1` and `Partition: 2` have kafka2 and kafka3 as their leaders (respectively). The leader handles all read and write requests for the partition while the replicas (followers) passively replicate the leader.
+From the output, we see that `Partition: 0` has ***kafka1*** as its leader. `Partition: 1` and `Partition: 2` have ***kafka2*** and ***kafka3*** as their leaders (respectively). The leader handles all read and write requests for the partition while the replicas (followers) passively replicate the leader.
 
 Taking `Partition: 0` as example, we have two more information:
 1. `Replicas: 1,2,3`: This shows that `Partition: 0` has replicas at kafka1, kafka2 and kafka3, in our example.
@@ -59,8 +59,12 @@ Let's stop kafka2:
 ```
 $ docker stop kafka2
 ```
-Run the command from section 4 again. 
-
+Running the command from section 4 again:
+```
+$ docker run -t --rm --net kafka-cluster-docker-compose_default \
+  kafka-ubuntu:latest \
+  bin/kafka-topics.sh --describe --topic MyTopic --zookeeper zookeeper:2181
+```
 Kafka1 was elected to be the new leader of `Partition: 1` which had the stopped kafka2 was the leader before.
 ```console
 Topic:MyTopic	PartitionCount:3	ReplicationFactor:3	Configs:
