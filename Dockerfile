@@ -8,10 +8,11 @@ RUN apt-get install -y \
 
 ENV KAFKA_PATH=/usr/local/kafka
 
-RUN wget https://www-us.apache.org/dist/kafka/2.1.1/kafka_2.11-2.1.1.tgz && \
-    tar xzf kafka_2.11-2.1.1.tgz && \
-    mv kafka_2.11-2.1.1 $KAFKA_PATH && \
-    rm -rf kafka_2.11-2.1.1.tgz
+# https://kafka.apache.org/downloads
+RUN wget https://downloads.apache.org/kafka/3.5.0/kafka_2.13-3.5.0.tgz && \
+    tar xzf kafka_2.13-3.5.0.tgz && \
+    mv kafka_2.13-3.5.0 $KAFKA_PATH && \
+    rm -rf kafka_2.13-3.5.0.tgz
 
 COPY scripts $KAFKA_PATH
 
