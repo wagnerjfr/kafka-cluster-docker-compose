@@ -27,7 +27,7 @@ Let's add a topic which will have replicas at all the 3 Kafka Brokers (Servers) 
 ```
 $ docker run -t --rm --net kafka-cluster-docker-compose_default \
   kafka-ubuntu:latest \
-  bin/kafka-topics.sh --create --zookeeper zookeeper:2181 \
+  bin/kafka-topics.sh --create --bootstrap-server kafka1:9092 \
   --replication-factor 3 --partitions 3 --topic MyTopic
 ```
 The console should print something like:
