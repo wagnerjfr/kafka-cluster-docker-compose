@@ -39,7 +39,7 @@ By running the command below, we can see how the partitions are distributed amon
 ```
 $ docker run -t --rm --net kafka-cluster-docker-compose_default \
   kafka-ubuntu:latest \
-  bin/kafka-topics.sh --describe --topic MyTopic --zookeeper zookeeper:2181
+  bin/kafka-topics.sh --describe --topic MyTopic --bootstrap-server kafka1:9092
 ```
 A similar output should appear:
 ```console
@@ -63,7 +63,7 @@ Running the command from section 4 again:
 ```
 $ docker run -t --rm --net kafka-cluster-docker-compose_default \
   kafka-ubuntu:latest \
-  bin/kafka-topics.sh --describe --topic MyTopic --zookeeper zookeeper:2181
+  bin/kafka-topics.sh --describe --topic MyTopic --bootstrap-server kafka1:9092
 ```
 Kafka1 was elected to be the new leader of `Partition: 1` which had the stopped kafka2 was the leader before.
 ```console
